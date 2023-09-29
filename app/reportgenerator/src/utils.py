@@ -1,4 +1,5 @@
 from json import JSONDecodeError, load
+from time import time
 
 
 def read_json_file(file_path: str) -> list:
@@ -18,3 +19,18 @@ def read_json_file(file_path: str) -> list:
         raise JSONDecodeError(err.msg, err.doc, err.pos)
     else:
         return data
+
+
+def validate_timestamp(timestamp) -> bool:
+    """
+    Validates the UNIX epoch timestamp
+    """
+    try:
+        t = float(timestamp)
+    except ValueError:
+        return False
+    else:
+        if 0 <= t <= time():
+            return True
+        else:
+            return False

@@ -9,7 +9,7 @@ class TestRentalSession(unittest.TestCase):
         self.session = RentalSession()
         self.time_session = RentalSession(_collected=1681722000, _returned=1681743600)
 
-    def test_start_session(self):
+    def test_start_session(self) -> None:
         valid_id = "ABC123"
         valid_timestamp = 1681722000
         valid_comment = "No issues - brand new and shiny!"
@@ -27,7 +27,7 @@ class TestRentalSession(unittest.TestCase):
             ),
         )
 
-    def test_end_session(self):
+    def test_end_session(self) -> None:
         started_session = RentalSession()
         started_session.start_session(
             _id="ABC123",
@@ -43,29 +43,29 @@ class TestRentalSession(unittest.TestCase):
         self.assertEqual(True, started_session.is_damaged)
         self.assertEqual(False, started_session.is_session_active)
 
-    def test_set_session_id(self):
+    def test_set_session_id(self) -> None:
         self.assertEqual(True, self.session.set_session_id("ABC123"))
         self.assertEqual(False, self.session.set_session_id("abc123"))
         self.assertEqual(False, self.session.set_session_id("123ABC"))
         self.assertEqual(False, self.session.set_session_id("1680382800"))
 
-    def test_set_time_collected(self):
+    def test_set_time_collected(self) -> None:
         self.assertEqual(True, self.session.set_time_collected("1681722000"))
         self.assertEqual(True, self.session.set_time_collected(1681722000))
         self.assertEqual(True, self.session.set_time_collected("0123499"))
 
-    def test_set_time_returned(self):
+    def test_set_time_returned(self) -> None:
         self.assertEqual(True, self.session.set_time_returned("1681722000"))
         self.assertEqual(True, self.session.set_time_returned(1681722000))
         self.assertEqual(True, self.session.set_time_returned("0123499"))
 
-    def test_set_initial_comment(self):
+    def test_set_initial_comment(self) -> None:
         self.assertEqual(
             True, self.session.set_initial_comment("No issues - brand new and shiny!")
         )
         self.assertEqual(False, self.session.set_initial_comment(""))
 
-    def test_calculate_session_duration(self):
+    def test_calculate_session_duration(self) -> None:
         self.assertEqual(
             6.0,
             self.time_session.calculate_session_duration(
@@ -73,22 +73,22 @@ class TestRentalSession(unittest.TestCase):
             ),
         )
 
-    def test_set_session_duration(self):
+    def test_set_session_duration(self) -> None:
         self.time_session.set_session_duration()
         self.assertEqual(6.0, self.time_session.duration)
 
-    def test_set_late_status(self):
+    def test_set_late_status(self) -> None:
         self.time_session.set_session_duration()
         self.time_session.set_late_status(self.time_session.duration)
         self.assertEqual(False, self.time_session.is_late)
 
-    def test_set_damage_status(self):
+    def test_set_damage_status(self) -> None:
         self.session.set_damage_status("Damaged")
         self.assertEqual(True, self.session.is_damaged)
         self.time_session.set_damage_status("")
         self.assertEqual(False, self.time_session.is_damaged)
 
-    def test_generate_summary(self):
+    def test_generate_summary(self) -> None:
         complete_session = RentalSession(
             _id="ABC123",
             _collected=1681722000,
