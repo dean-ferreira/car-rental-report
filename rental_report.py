@@ -2,16 +2,12 @@
 from json import load
 import sys
 
-
-def read_json_file(file_path: str) -> list:
-    data = []
-    with open(file_path, "r") as file:
-        data = load(file)
-    return data
+from app.reportgenerator.src.utils import read_json_file
 
 
 def main():
     events = read_json_file(sys.argv[1])
+    print(events)
 
 
 if __name__ == "__main__":
