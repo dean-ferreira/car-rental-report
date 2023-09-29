@@ -2,6 +2,7 @@
 
 ## About the Project
 
+![example](images/example_output.png?raw=true)
 This Python application will parse a JSON file and generate a summary report for all rental sessions. The report will be saved as a csv file named SR_YYYY-MM-DD.csv
 
 The summary report contains the following fields for each rental session:
