@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import datetime
 import sys
-from json import load
 
 from app.reportgenerator.src.summary_report import SummaryReport
 from app.reportgenerator.src.utils import read_json_file
